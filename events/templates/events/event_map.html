@@ -1,0 +1,37 @@
+{% extends 'events/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Dublin Events Map</h2>
+    <!-- This div will contain the map -->
+    <div id="map" style="height: 400px;"></div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Parse the JSON string of events passed from the view
+    var eventsJson = '{{ events_json|safe }}';
+    var events = JSON.parse(eventsJson);
+
+    // Initialize the map centered on Dublin, Ireland
+    var map = L.map('map').setView([53.349805, -6.26031], 11);
+    
+    // Add OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+    // Loop through each event and add a marker to the map
+    events.forEach(function(event) {
+        var lat = event.fields.latitude;
+        var lng = event.fields.longitude;
+        var name = event.fields.name;
+        if (lat && lng) {
+            L.marker([lat, lng]).addTo(map)
+                .bindPopup(name);  // Clicking on a marker will show the event name
+        }
+    });
+</script>
+{% endblock %}

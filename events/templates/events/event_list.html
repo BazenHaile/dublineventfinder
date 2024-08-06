@@ -1,0 +1,57 @@
+{% extends 'events/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Dublin Events</h2>
+
+    <div class="row">
+        <!-- Search form -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Search Events</h5>
+                    <form method="get" action="{% url 'event_list' %}">
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary w-100">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event list -->
+        <div class="col-md-8">
+            {% if events %}
+                {% for event in events %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ event.name }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ event.get_category_display }}</h6>
+                            <p class="card-text">{{ event.description|truncatewords:30 }}</p>
+                            <p class="card-text"><small class="text-muted">{{ event.start_time|date:"F d, Y H:i" }} - {{ event.end_time|date:"F d, Y H:i" }}</small></p>
+                            <p class="card-text"><small class="text-muted">Location: {{ event.location }}</small></p>
+                            <a href="{% url 'event_detail' event.pk %}" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="card">
+                    <div class="card-body">
+                        <p>No events found.</p>
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Pagination -->
+            {% if is_paginated %}
+                {% include 'events/pagination.html' %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

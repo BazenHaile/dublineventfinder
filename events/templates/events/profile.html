@@ -1,0 +1,52 @@
+{% extends 'events/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Your Profile</h2>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    {% if user.profile_picture %}
+                        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+                    {% else %}
+                        <img src="{% static 'images/default_profile.png' %}" alt="Default Profile Picture" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+                    {% endif %}
+                    <h5 class="card-title">{{ user.username }}</h5>
+                    <p class="card-text">{{ user.email }}</p>
+                    {% if user.contact_phone %}
+                        <p class="card-text"><small class="text-muted">Phone: {{ user.contact_phone }}</small></p>
+                    {% endif %}
+                    <a href="{% url 'password_change' %}" class="btn btn-secondary">Change Password</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Edit Your Information</h5>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                                {% endif %}
+                                {% for error in field.errors %}
+                                    <div class="invalid-feedback d-block">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

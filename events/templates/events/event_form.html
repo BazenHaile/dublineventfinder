@@ -1,0 +1,112 @@
+{% extends 'events/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    .invalid-feedback {
+        display: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">{% if form.instance.pk %}Edit Event{% else %}Create Event{% endif %}</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" id="eventForm">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.name.label_tag }}
+                                {{ form.name }}
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.category.label_tag }}
+                                {{ form.category }}
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            {{ form.description.label_tag }}
+                            {{ form.description }}
+                            <div class="invalid-feedback">This field is required.</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.start_time.label_tag }}
+                                {{ form.start_time }}
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.end_time.label_tag }}
+                                {{ form.end_time }}
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.location.label_tag }}
+                                {{ form.location }}
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.status.label_tag }}
+                                {{ form.status }}
+                                <div class="invalid-feedback">This field is required.</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                {{ form.entrance }}
+                                {{ form.entrance.label_tag }}
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Save Event</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('eventForm');
+    const fields = form.querySelectorAll('input, textarea, select');
+
+    fields.forEach(field => {
+        field.addEventListener('blur', function() {
+            if (!this.value && this.required) {
+                this.classList.add('is-invalid');
+                this.nextElementSibling.style.display = 'block';
+            } else {
+                this.classList.remove('is-invalid');
+                this.nextElementSibling.style.display = 'none';
+            }
+        });
+    });
+
+    form.addEventListener('submit', function(event) {
+        let isValid = true;
+        fields.forEach(field => {
+            if (!field.value && field.required) {
+                field.classList.add('is-invalid');
+                field.nextElementSibling.style.display = 'block';
+                isValid = false;
+            }
+        });
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+});
+</script>
+{% endblock %}

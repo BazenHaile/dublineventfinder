@@ -1,0 +1,15 @@
+/* events/static/css/style.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 600px; /* Adjust height value as needed */
+  }
+  
+.carousel-caption {
+    background-color: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 10px;
+  }

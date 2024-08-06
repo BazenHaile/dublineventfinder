@@ -1,0 +1,76 @@
+/* events/static/css/style.css /
+body {
+font-family: Arial, sans-serif;
+}
+.hero-section {
+position: relative;
+}
+.carousel-item img {
+object-fit: cover;
+height: 600px; / Adjust this value as needed /
+width: 100%;
+}
+.welcome-overlay {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 10;
+text-align: center;
+width: 80%;
+max-width: 800px;
+background-color: rgba(0, 0, 0, 0.6);
+padding: 2rem;
+border-radius: 10px;
+}
+.welcome-overlay h1 {
+font-size: 3.5rem;
+font-weight: bold;
+color: #ffffff;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+.welcome-overlay p {
+font-size: 1.5rem;
+color: #ffffff;
+text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+margin-bottom: 1rem;
+}
+.welcome-overlay .btn {
+font-size: 1.2rem;
+padding: 10px 20px;
+margin: 0.5rem;
+}
+.carousel-caption {
+background-color: rgba(0,0,0,0.5);
+padding: 20px;
+border-radius: 10px;
+}
+/ Responsive adjustments /
+@media (max-width: 768px) {
+.carousel-item img {
+height: 400px; / Adjust for smaller screens /
+ }
+.welcome-overlay h1 {
+font-size: 2.5rem;
+ }
+.welcome-overlay p {
+font-size: 1.2rem;
+ }
+}
+/ Additional styles for other sections /
+.row.mt-5 h3 {
+color: #007bff;
+margin-bottom: 1rem;
+}
+.row.mt-5 p {
+color: #6c757d;
+}
+/ Footer styles */
+.footer {
+    background-color: #f8f9fa;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    }
+    .footer .text-muted {
+    color: #6c757d;
+    }

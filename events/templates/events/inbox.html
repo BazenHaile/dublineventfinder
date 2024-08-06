@@ -1,0 +1,32 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+<h2>Inbox</h2>
+<a href="{% url 'compose_message' %}" class="btn btn-primary mb-3">Compose Message</a>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>From</th>
+            <th>Subject</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for message in messages %}
+        <tr {% if not message.read %}class="table-active"{% endif %}>
+            <td>{{ message.sender.username }}</td>
+            <td><a href="{% url 'view_message' message.id %}">{{ message.subject }}</a></td>
+            <td>{{ message.sent_at|date:"M d, Y H:i" }}</td>
+            <td>
+                <a href="{% url 'archive_message' message.id %}" class="btn btn-sm btn-secondary">Archive</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="text-center">No messages in your inbox.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

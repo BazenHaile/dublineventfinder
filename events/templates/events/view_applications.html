@@ -1,0 +1,31 @@
+
+{% extends 'events/base.html' %}
+
+{% block content %}
+    <h2>Applications for {{ event.name }}</h2>
+    {% if applications %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Applicant</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Applied At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for application in applications %}
+                    <tr>
+                        <td>{{ application.applicant.username }}</td>
+                        <td>{{ application.applicant.email }}</td>
+                        <td>{{ application.applicant.contact_phone }}</td>
+                        <td>{{ application.applied_at }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No applications yet.</p>
+    {% endif %}
+    <a href="{% url 'event_detail' event.pk %}" class="btn btn-secondary">Back to Event</a>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>{{ message.subject }}</h2>
+    </div>
+    <div class="card-body">
+        <p><strong>From:</strong> {{ message.sender.username }}</p>
+        <p><strong>Date:</strong> {{ message.sent_at|date:"M d, Y H:i" }}</p>
+        <hr>
+        <div class="message-body">
+            {{ message.body|linebreaks }}
+        </div>
+    </div>
+    <div class="card-footer">
+        <a href="{% url 'inbox' %}" class="btn btn-secondary">Back to Inbox</a>
+        <a href="{% url 'compose_message' %}?reply_to={{ message.id }}" class="btn btn-primary">Reply</a>
+    </div>
+</div>
+{% endblock %}
