@@ -59,7 +59,6 @@ class Event(models.Model):
     entrance = models.BooleanField(default=False)
     # Foreign key relationship: each event is organized by a user
     organizer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='organized_events')
-    address = models.CharField(max_length=255, blank=True)
     # Geographical coordinates of the event
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)

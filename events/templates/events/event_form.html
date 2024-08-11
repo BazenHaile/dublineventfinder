@@ -59,6 +59,18 @@
                                 <div class="invalid-feedback">This field is required.</div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.latitude.label_tag }}
+                                {{ form.latitude }}
+                                <div class="invalid-feedback">Please enter a valid latitude.</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.longitude.label_tag }}
+                                {{ form.longitude }}
+                                <div class="invalid-feedback">Please enter a valid longitude.</div>
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <div class="form-check">
                                 {{ form.entrance }}
