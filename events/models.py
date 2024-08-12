@@ -57,6 +57,7 @@ class Event(models.Model):
     location = models.CharField(max_length=50, choices=DUBLIN_LOCATIONS)
     # Boolean field to indicate if the event requires entrance fee
     entrance = models.BooleanField(default=False)
+    entrance_fee = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     # Foreign key relationship: each event is organized by a user
     organizer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='organized_events')
     # Geographical coordinates of the event

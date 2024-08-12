@@ -87,7 +87,7 @@ class EventSearchForm(forms.Form):
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['name', 'description', 'start_time', 'end_time', 'location', 'entrance', 'status', 'category','latitude', 'longitude']
+        fields = ['name', 'description', 'start_time', 'end_time', 'location', 'entrance', 'entrance_fee', 'status', 'category','latitude', 'longitude']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
@@ -95,6 +95,7 @@ class EventForm(forms.ModelForm):
             'end_time': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             'location': forms.Select(attrs={'class': 'form-control'}),
             'entrance': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'entrance_fee': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
             'status': forms.Select(attrs={'class': 'form-control'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
             'latitude': forms.NumberInput(attrs={'class': 'form-control', 'step': 'any'}),

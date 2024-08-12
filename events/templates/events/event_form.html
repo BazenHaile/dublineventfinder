@@ -71,12 +71,19 @@
                                 <div class="invalid-feedback">Please enter a valid longitude.</div>
                             </div>
                         </div>
+
                         <div class="mb-3">
                             <div class="form-check">
                                 {{ form.entrance }}
                                 {{ form.entrance.label_tag }}
                             </div>
                         </div>
+                        <div class="mb-3" id="entranceFeeField" style="display: none;">
+                            {{ form.entrance_fee.label_tag }}
+                            {{ form.entrance_fee }}
+                            <div class="invalid-feedback">Please enter a valid entrance fee.</div>
+                        </div>
+
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary">Save Event</button>
                         </div>
@@ -90,7 +97,26 @@
 
 {% block extra_js %}
 <script>
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
+
+    const entranceCheckbox = document.getElementById('id_entrance');
+    const entranceFeeField = document.getElementById('entranceFeeField');
+
+    function toggleEntranceFeeField() {
+        if (entranceCheckbox.checked) {
+            entranceFeeField.style.display = 'block';
+        } else {
+            entranceFeeField.style.display = 'none';
+        }
+    }
+
+    entranceCheckbox.addEventListener('change', toggleEntranceFeeField);
+    toggleEntranceFeeField();  // Initial state
+
+    
     const form = document.getElementById('eventForm');
     const fields = form.querySelectorAll('input, textarea, select');
 
