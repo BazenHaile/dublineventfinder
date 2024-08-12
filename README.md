@@ -47,6 +47,7 @@ Dublin Event Finder is a comprehensive web application designed to connect event
 
 4. **Configure environment variables:**
    Create a `.env` file in the project root with the following:
+   
    SECRET_KEY=your_secret_key_here
    DEBUG=True
    DATABASE_URL=postgres://user:password@localhost/dbname
@@ -54,16 +55,16 @@ Dublin Event Finder is a comprehensive web application designed to connect event
    EMAIL_HOST_USER=your_email@example.com
    EMAIL_HOST_PASSWORD=your_email_password
 
-5. **Set up the database:**
+6. **Set up the database:**
    python manage.py migrate
 
-6. **Create a superuser:**
+7. **Create a superuser:**
    python manage.py createsuperuser
 
-7. **Run the development server:**
+8. **Run the development server:**
    python manage.py runserver
 
-8. Access the application at `http://127.0.0.1:8000/`
+9. Access the application at `http://127.0.0.1:8000/`
 
 ## Usage Guide
 
