@@ -6,6 +6,11 @@
 <p><strong>Date:</strong> {{ event.start_time }} - {{ event.end_time }}</p>
 <p><strong>Location:</strong> {{ event.location }}</p>
 
+<p><strong>Entrance:</strong> {% if event.entrance %}Required{% else %}Free{% endif %}</p>
+{% if event.entrance and event.entrance_fee %}
+    <p><strong>Entrance Fee:</strong> €{{ event.entrance_fee }}</p>
+{% endif %}
+
 <!-- Collapsible description section -->
 <button class="btn btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#eventDescription" aria-expanded="false" aria-controls="eventDescription">
     Toggle Description
