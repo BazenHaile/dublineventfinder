@@ -48,12 +48,19 @@ Dublin Event Finder is a comprehensive web application designed to connect event
 4. **Configure environment variables:**
    Create a `.env` file in the project root with the following:
    
+   
    SECRET_KEY=your_secret_key_here
+   
    DEBUG=True
+   
    DATABASE_URL=postgres://user:password@localhost/dbname
+   
    OPENCAGE_API_KEY=your_opencage_api_key
+   
    EMAIL_HOST_USER=your_email@example.com
+   
    EMAIL_HOST_PASSWORD=your_email_password
+   
 
 6. **Set up the database:**
    python manage.py migrate
@@ -92,11 +99,14 @@ Dublin Event Finder is a comprehensive web application designed to connect event
 The application is hosted on Render. To update the deployed version:
 
 1. Push changes to the GitHub repository:
+   
    git add .
+
    git commit -m "Your descriptive commit message"
+
    git push origin master
 
-2. Render will automatically detect the changes and redeploy the application.
+3. Render will automatically detect the changes and redeploy the application.
 
 ## Security Features
 
